@@ -38,10 +38,10 @@ Passo a passo:
 
 ## Black Friday (sexta, 27/11)
 - Banner em `black-friday/` (desktop 1920×700 e telemóvel 1080×1350), nas cores do logo.
-- **A oferta no banner (−20% + frete grátis acima de 40 €) é uma sugestão minha.** Confirme a margem antes de publicar. Os textos editam-se no `banner.html`.
+- **A oferta no banner (−20% em compras acima de 30 € + frete grátis acima de 40 €) é uma sugestão minha.** Confirme a margem antes de publicar. Os textos editam-se no `banner.html`.
 - Use **desconto automático** (Descontos → Criar → Automático) e não código: cada campo a mais no checkout faz perder vendas.
 - Frete grátis acima de 40 € com uma peça mediana de 27 € leva a cliente a juntar a 2.ª peça. Aumenta o ticket médio, que vale mais que o desconto.
-- Barra de anúncio no mesmo período: "BLACK FRIDAY · −20% em todo o site · até segunda 30/11".
+- Barra de anúncio no mesmo período: "BLACK FRIDAY · 20% acima de 30 € · frete grátis acima de 40 € · até 30/11".
 
 ## Ordem de execução (80/20, faça hoje e amanhã)
 1. Políticas de envio e devolução + barra de anúncio com o envio. *(30 min)*
