@@ -4,126 +4,142 @@
 <meta charset="utf-8">
 <title>Banner Black Friday – Use Lolita</title>
 <!--
-  Banner Black Friday da Use Lolita.
+  Banner Black Friday da Use Lolita (versão 2).
+  Feito para o tema Atelier: o topo fica livre porque o cabeçalho (menu + logo) fica por cima da imagem,
+  e o conteúdo importante fica no centro, para não ser cortado.
   Para mudar a oferta, altere os textos marcados com "EDITAR" e rode:  node render.js
-  Gera: banner-desktop.png (1920x700) e banner-mobile.png (1080x1350)
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Red+Hat+Text:wght@400;500;600&display=block" rel="stylesheet">
 <style>
   :root{
-    /* Cores tiradas do logotipo da loja */
     --creme:#FBF4EE;
-    --blush:#EFE2DC;
-    --mocha:#6E5049;     /* letra "Lolita" */
-    --espresso:#2E211E;  /* o "black" da Black Friday, em tom da marca */
-    --ouro:#C9A47F;      /* aro e pingentes do selo */
+    --blush:#F1E4DD;
+    --mocha:#6E5049;
+    --espresso:#2E211E;
+    --ouro:#C9A47F;
     --ouro-claro:#E4CBAE;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:#ddd;font-family:"Red Hat Text",sans-serif;padding:40px;display:flex;flex-direction:column;gap:40px;align-items:flex-start}
+  body{background:#ccc;font-family:"Red Hat Text",sans-serif;padding:40px;display:flex;flex-direction:column;gap:40px;align-items:flex-start}
   .serif{font-family:"Bodoni Moda",serif}
+  .art{position:relative;overflow:hidden;background:var(--creme)}
+  /* fundo: leve degradê creme → blush, como o selo do logo */
+  .art::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 85% 60%,var(--blush) 0%,var(--creme) 60%)}
+  .art > *{position:relative}
 
-  /* ---------- selo (círculo com pingentes, igual ao logo) ---------- */
-  .selo{display:block}
-
-  /* ---------- DESKTOP 1920x700 ---------- */
-  #desktop{width:1920px;height:700px;display:grid;grid-template-columns:1fr 760px;background:var(--creme);overflow:hidden;position:relative}
-  #desktop .txt{padding:0 0 0 190px;display:flex;flex-direction:column;justify-content:center;position:relative}
-  .eyebrow{display:flex;align-items:center;gap:22px;color:var(--mocha);font-weight:600;letter-spacing:.42em;font-size:20px;text-transform:uppercase}
-  .eyebrow::before{content:"";width:64px;height:1px;background:var(--ouro)}
-  #desktop h1{font-weight:400;color:var(--espresso);font-size:118px;line-height:1.02;margin:34px 0 30px;letter-spacing:-.01em}
+  .eyebrow{display:flex;align-items:center;gap:20px;color:var(--mocha);font-weight:600;letter-spacing:.42em;text-transform:uppercase}
+  .eyebrow::before{content:"";width:56px;height:1px;background:var(--ouro)}
+  h1{font-family:"Bodoni Moda",serif;font-weight:400;color:var(--espresso);line-height:1.02;letter-spacing:-.01em}
   h1 em{font-style:italic;color:var(--mocha)}
-  .sub{color:var(--mocha);font-size:26px;line-height:1.5;max-width:780px}
-  .sub b{font-weight:600;color:var(--espresso)}
-  .cta-row{display:flex;align-items:center;gap:36px;margin-top:44px}
-  .cta{background:var(--espresso);color:var(--creme);font-weight:500;font-size:22px;letter-spacing:.14em;text-transform:uppercase;padding:24px 46px;border-radius:2px}
-  .confianca{color:var(--mocha);font-size:18px;letter-spacing:.04em;opacity:.85}
+  .oferta{color:var(--espresso)}
+  .oferta b{font-family:"Bodoni Moda",serif;font-weight:500}
+  .detalhe{color:var(--mocha)}
+  .cta{display:inline-block;background:var(--espresso);color:var(--creme);font-weight:500;letter-spacing:.16em;text-transform:uppercase;border-radius:2px}
+  .confianca{color:var(--mocha);letter-spacing:.04em;opacity:.85}
 
-  #desktop .painel{background:var(--espresso);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--creme)}
-  .painel .moldura{position:absolute;inset:34px;border:1px solid rgba(201,164,127,.45)}
-  .tag{font-size:19px;letter-spacing:.5em;text-transform:uppercase;color:var(--ouro-claro);font-weight:500}
-  .pct{font-family:"Bodoni Moda",serif;font-weight:400;color:var(--creme);line-height:.9;letter-spacing:-.03em}
-  .pct small{font-size:.42em;vertical-align:.95em;margin-left:.04em;color:var(--ouro-claro)}
-  #desktop .pct{font-size:230px;margin:10px 0 6px}
-  .em-tudo{font-family:"Bodoni Moda",serif;font-style:italic;font-size:34px;color:var(--ouro-claro)}
-  .datas{margin-top:26px;font-size:18px;letter-spacing:.32em;text-transform:uppercase;color:var(--creme);opacity:.8}
+  /* foto em arco (forma de pingente) */
+  .arco{position:absolute;overflow:hidden;border-radius:999px 999px 0 0;box-shadow:0 0 0 1px rgba(201,164,127,.5)}
+  .arco img{width:100%;height:100%;object-fit:cover;object-position:60% 30%;display:block}
+  .arco-linha{position:absolute;border:1px solid var(--ouro);border-radius:999px 999px 0 0;border-bottom:none}
 
-  /* ---------- MOBILE 1080x1350 ---------- */
-  #mobile{width:1080px;height:1350px;background:var(--creme);display:grid;grid-template-rows:620px 1fr;overflow:hidden}
-  #mobile .painel{background:var(--espresso);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--creme)}
-  #mobile .painel .moldura{inset:30px}
-  #mobile .pct{font-size:250px;margin:14px 0 4px}
-  #mobile .em-tudo{font-size:38px}
-  #mobile .txt{padding:70px 90px 0;display:flex;flex-direction:column;align-items:center;text-align:center}
-  #mobile .eyebrow{font-size:22px}
-  #mobile .eyebrow::after{content:"";width:64px;height:1px;background:var(--ouro)}
-  #mobile h1{font-weight:400;color:var(--espresso);font-size:104px;line-height:1.02;margin:36px 0 28px}
-  #mobile .sub{font-size:30px}
-  #mobile .cta-row{flex-direction:column;gap:26px;margin-top:46px}
-  #mobile .cta{font-size:26px;padding:28px 60px}
-  #mobile .confianca{font-size:21px}
+  /* selo redondo com a oferta */
+  .selo-oferta{position:absolute;border-radius:50%;background:var(--espresso);color:var(--creme);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 0 0 6px var(--creme),0 0 0 7px var(--ouro)}
+  .selo-oferta .pct{font-family:"Bodoni Moda",serif;line-height:.9;letter-spacing:-.03em}
+  .selo-oferta .pct small{font-size:.45em;vertical-align:.8em;color:var(--ouro-claro)}
+  .selo-oferta .min{font-family:"Bodoni Moda",serif;font-style:italic;color:var(--ouro-claro);line-height:1.2}
+
+  /* ---------- DESKTOP 1920x760 ---------- */
+  #desktop{width:1920px;height:760px}
+  #desktop .txt{position:absolute;left:220px;top:170px;width:880px}
+  #desktop .eyebrow{font-size:19px}
+  #desktop h1{font-size:104px;margin:28px 0 26px}
+  #desktop .oferta{font-size:30px;line-height:1.35}
+  #desktop .oferta b{font-size:38px}
+  #desktop .detalhe{font-size:22px;margin-top:8px}
+  #desktop .linha-cta{display:flex;align-items:center;gap:30px;margin-top:34px}
+  #desktop .cta{font-size:19px;padding:20px 40px}
+  #desktop .confianca{font-size:17px}
+  #desktop .arco{right:250px;top:130px;width:500px;height:630px}
+  #desktop .arco-linha{right:226px;top:106px;width:548px;height:654px}
+  #desktop .selo-oferta{right:690px;top:430px;width:220px;height:220px}
+  #desktop .selo-oferta .pct{font-size:96px}
+  #desktop .selo-oferta .min{font-size:20px;margin-top:4px}
+
+  /* ---------- TELEMÓVEL (slide) 1080x1080 ---------- */
+  #mobile{width:1080px;height:1080px}
+  #mobile .arco{left:50%;transform:translateX(-50%);top:200px;width:460px;height:520px}
+  #mobile .arco-linha{left:50%;transform:translateX(-50%);top:178px;width:504px;height:542px}
+  #mobile .selo-oferta{left:150px;top:500px;width:200px;height:200px}
+  #mobile .selo-oferta .pct{font-size:86px}
+  #mobile .selo-oferta .min{font-size:19px}
+  #mobile .txt{position:absolute;left:0;right:0;top:752px;text-align:center}
+  #mobile .eyebrow{justify-content:center;font-size:20px}
+  #mobile .eyebrow::after{content:"";width:56px;height:1px;background:var(--ouro)}
+  #mobile h1{font-size:76px;margin:20px 0 16px}
+  #mobile .oferta{font-size:28px}
+  #mobile .oferta b{font-size:32px}
+
+  /* ---------- INSTAGRAM 1080x1350 ---------- */
+  #insta{width:1080px;height:1350px}
+  #insta .arco{left:50%;transform:translateX(-50%);top:110px;width:540px;height:640px}
+  #insta .arco-linha{left:50%;transform:translateX(-50%);top:84px;width:590px;height:666px}
+  #insta .selo-oferta{left:110px;top:500px;width:230px;height:230px}
+  #insta .selo-oferta .pct{font-size:100px}
+  #insta .selo-oferta .min{font-size:21px}
+  #insta .txt{position:absolute;left:0;right:0;top:800px;text-align:center}
+  #insta .eyebrow{justify-content:center;font-size:21px}
+  #insta .eyebrow::after{content:"";width:56px;height:1px;background:var(--ouro)}
+  #insta h1{font-size:96px;margin:26px 0 22px}
+  #insta .oferta{font-size:30px}
+  #insta .oferta b{font-size:36px}
+  #insta .detalhe{font-size:24px;margin-top:8px}
+  #insta .cta{font-size:22px;padding:22px 48px;margin-top:34px}
 </style>
 </head>
 <body>
 
-<template id="selo-tpl">
-  <!-- Selo da marca redesenhado em linhas finas: aro + coração, pérola, estrela -->
-  <svg class="selo" viewBox="0 0 200 230" fill="none">
-    <circle cx="100" cy="100" r="86" stroke="#C9A47F" stroke-width="1.6"/>
-    <text x="100" y="128" text-anchor="middle" font-family="Bodoni Moda, serif" font-style="italic" font-size="84" fill="#E4CBAE">L</text>
-    <g stroke="#C9A47F" stroke-width="1.4">
-      <circle cx="68" cy="190" r="3.5"/><circle cx="100" cy="194" r="3.5"/><circle cx="132" cy="190" r="3.5"/>
-    </g>
-    <path d="M68 214c-7-5-12-9-12-14a6 6 0 0 1 12-2a6 6 0 0 1 12 2c0 5-5 9-12 14z" fill="#C9A47F"/>
-    <circle cx="100" cy="211" r="10" fill="#E4CBAE"/>
-    <path d="M132 198l3 7.5 8 .6-6.1 5.2 1.9 7.8-6.8-4.2-6.8 4.2 1.9-7.8-6.1-5.2 8-.6z" fill="#C9A47F"/>
-  </svg>
-</template>
-
-<!-- ===================== DESKTOP ===================== -->
-<section id="desktop">
+<!-- ===================== DESKTOP (slide do site) ===================== -->
+<section id="desktop" class="art">
   <div class="txt">
-    <div class="eyebrow">Black Friday Use Lolita</div>
-    <h1 class="serif">O seu brilho,<br><em>por menos.</em></h1>
-    <p class="sub"><!-- EDITAR --><b>20% de desconto</b> em compras acima de 30&nbsp;€ e frete grátis acima de 40&nbsp;€. Desconto aplicado automaticamente no carrinho.</p>
-    <div class="cta-row">
-      <span class="cta">Descobrir as peças</span>
+    <div class="eyebrow">Black Friday · 27 a 30 novembro</div>
+    <h1>O seu brilho,<br><em>por menos.</em></h1>
+    <p class="oferta"><!-- EDITAR --><b>20% de desconto</b> em compras acima de 30&nbsp;€</p>
+    <p class="detalhe"><!-- EDITAR -->Frete grátis acima de 40&nbsp;€ · desconto aplicado no carrinho</p>
+    <div class="linha-cta">
+      <span class="cta">Ver as peças</span>
       <span class="confianca">Ouro 18k · Hipoalergénico · 1 ano de garantia</span>
     </div>
   </div>
-  <div class="painel">
-    <div class="moldura"></div>
-    <div class="selo-slot" style="width:120px"></div>
-    <div class="pct">20<small>%</small></div>
-    <div class="em-tudo">em compras acima de 30&nbsp;€</div>
-    <div class="datas"><!-- EDITAR -->27 — 30 novembro</div>
-  </div>
+  <div class="arco-linha"></div>
+  <div class="arco"><img src="fotos/brinco-franja.jpg" alt=""></div>
+  <div class="selo-oferta"><div class="pct">20<small>%</small></div><div class="min">acima de 30&nbsp;€</div></div>
 </section>
 
-<!-- ===================== MOBILE ===================== -->
-<section id="mobile">
-  <div class="painel">
-    <div class="moldura"></div>
-    <div class="selo-slot" style="width:120px"></div>
-    <div class="pct">20<small>%</small></div>
-    <div class="em-tudo">em compras acima de 30&nbsp;€</div>
-    <div class="datas"><!-- EDITAR -->27 — 30 novembro</div>
-  </div>
+<!-- ===================== TELEMÓVEL (slide do site) ===================== -->
+<section id="mobile" class="art">
+  <div class="arco-linha"></div>
+  <div class="arco"><img src="fotos/brinco-franja.jpg" alt=""></div>
+  <div class="selo-oferta"><div class="pct">20<small>%</small></div><div class="min">acima de 30&nbsp;€</div></div>
   <div class="txt">
     <div class="eyebrow">Black Friday</div>
-    <h1 class="serif">O seu brilho,<br><em>por menos.</em></h1>
-    <p class="sub"><!-- EDITAR -->Frete grátis acima de 40&nbsp;€.<br>Desconto aplicado automaticamente no carrinho.</p>
-    <div class="cta-row">
-      <span class="cta">Descobrir as peças</span>
-      <span class="confianca">Ouro 18k · Hipoalergénico · 1 ano de garantia</span>
-    </div>
+    <h1>O seu brilho, <em>por menos.</em></h1>
+    <p class="oferta">27 a 30 novembro · frete grátis acima de 40&nbsp;€</p>
   </div>
 </section>
 
-<script>
-  const tpl=document.getElementById('selo-tpl').content;
-  document.querySelectorAll('.selo-slot').forEach(s=>s.appendChild(tpl.cloneNode(true)));
-</script>
+<!-- ===================== INSTAGRAM (post / stories) ===================== -->
+<section id="insta" class="art">
+  <div class="arco-linha"></div>
+  <div class="arco"><img src="fotos/brinco-franja.jpg" alt=""></div>
+  <div class="selo-oferta"><div class="pct">20<small>%</small></div><div class="min">acima de 30&nbsp;€</div></div>
+  <div class="txt">
+    <div class="eyebrow">Black Friday · 27 a 30 nov</div>
+    <h1>O seu brilho,<br><em>por menos.</em></h1>
+    <p class="detalhe">Frete grátis acima de 40&nbsp;€ · lolitajoias.com</p>
+    <span class="cta">Link na bio</span>
+  </div>
+</section>
+
 </body>
 </html>
